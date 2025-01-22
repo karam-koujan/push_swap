@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/22 20:51:18 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/22 20:59:44 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,18 +89,22 @@ char	*arr_strjoin(char **str, size_t size)
 	size_t	i;
 	char	*arr;
 	char	*prev;
+	char	*tmp;
 
 	arr = NULL;
 	i = 0;
-	prev = str[0];
+	prev = ft_strdup(str[0]);
 	while (++i < size)
 	{
+		free(prev);
 		prev = ft_strjoin(prev, " ");
 		free(arr);
+		tmp = prev;
 		arr = ft_strjoin(prev, str[i]);
-		free(prev);
+		free(tmp);
 		prev = arr;
 	}
+	free(prev);
 	return (arr);
 }
 
