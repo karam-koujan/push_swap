@@ -1,5 +1,6 @@
 NAME = push_swap
-OBJ = ft_atoi.o ft_split.o main.o ft_substr.o ft_strlen.o ft_lstadd_front.o ft_lstadd_back.o ft_lstnew.o
+OBJ = ft_atoi.o ft_split.o main.o ft_substr.o ft_strlen.o ft_lstadd_front.o ft_lstadd_back.o ft_lstnew.o \
+	ft_strchr.o
 CFLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME)

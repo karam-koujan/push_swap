@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/22 12:25:56 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/22 18:58:35 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,36 +36,74 @@ int	is_number(char *str)
 	return (1);
 }
 
-int main(int ac, char **av)
+int	is_dup(char	**nums)
 {
-	char	**nums;
-	int		i;
-	int		nb;
-	t_list	*head;
+	int	i;
+	int	j;
 
-	i = 0;
-	if (ac == 1)
-		return (1);
-	if (ac == 2)
+	i = -1;
+	while (nums[++i])
 	{
-		nums = ft_split(av[1], ' ');
-		while (nums[i])
+		j = i;
+		while (nums[++j])
 		{
-			if (!is_number(nums[i]))
-				return (printf("Error\n"), 1);
-			nb = ft_atoi(nums[i]);
-			if ((nb == 0 || nb == -1) && ft_strlen(nums[i]) > 2)
-				return (printf("Error\n"), 1);
-			if (i == 0)
-				head = ft_lstnew(nb);
-			else
-				ft_lstadd_back(&head, ft_lstnew(nb));
-			i++;
-		}
-		while (head)
-		{
-		printf("%i ", head->content);
-		head = head->next;
+			if (ft_atoi(nums[i]) == ft_atoi(nums[j]))
+				return (1);
 		}
 	}
+	return (0);
 }
+
+int	check_nums(int ac, char **str)
+{
+	char		**nums;
+	int			i;
+	int			nb;
+
+	i = 0;
+	if (ac == 2)
+		nums = ft_split(str[1], ' ');
+	else
+	{
+		i = 1;
+		nums = str;
+	}
+	while (nums[i])
+	{
+		if (ft_strchr(nums[i], ' ') != 0)
+		{
+			if (!check_nums(2, nums + i - 1))
+				return (0);
+			i++;
+			continue ;
+		}
+		if (!is_number(nums[i]))
+			return (0);
+		nb = ft_atoi(nums[i]);
+		if ((nb == 0 || nb == -1) && ft_strlen(nums[i]) > 2)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	print_list(t_list *head)
+{
+	while (head)
+	{
+		printf("%i ", head->content);
+		head = head->next;
+	}
+}
+
+int	main(int ac, char **av)
+{
+
+	if (ac == 1)
+		return (1);
+
+	if(!check_nums(ac, av) && printf("Error\n"))
+			return (1);
+
+}
+
