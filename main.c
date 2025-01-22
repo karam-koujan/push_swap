@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/22 20:45:46 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/22 20:51:18 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ int	check_nums(char *str, t_list **head)
 		else
 			ft_lstadd_back(head, ft_lstnew(nb));
 		i++;
+		free(nums[i]);
 	}
+	free(nums);
 	return (1);
 }
 
@@ -111,10 +113,12 @@ void	print_list(t_list *head)
 	}
 }
 
+void	f(){system("leaks push_swap");}
+
 int	main(int ac, char **av)
 {
 	t_list	*head;
-
+	atexit(f);
 	if (ac == 1)
 		return (1);
 	if (ac == 2)
@@ -126,5 +130,5 @@ int	main(int ac, char **av)
 		return (1);
 	print_list(head);
 	if (is_dup(head) && printf("Error\n"))
-		return (1);
+		return (ft_lstclear(&head, free),1);
 }
