@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/23 13:00:57 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/23 13:07:51 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,9 @@ char	*arr_strjoin(char **str, size_t size)
 		result = ft_strjoin(temp, str[i]);
 		free(temp);
 		free(tr);
+		tr = NULL;
 	}
-	return (result);
+	return (free(tr), result);
 }
 
 void	print_list(t_list *head)
