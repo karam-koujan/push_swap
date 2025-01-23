@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/23 13:07:51 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/23 13:58:28 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,8 @@ int	check_nums(char *str, t_list **head)
 
 	i = 0;
 	if (str == NULL || !*str)
-		return (0);
+		return (free(str), 0);
 	nums = ft_split(str, ' ');
-	if (!nums)
-		return (0);
 	c_nums = NULL;
 	while (nums[i])
 	{
@@ -120,7 +118,7 @@ int	check_nums(char *str, t_list **head)
 		free(c_nums);
 	}
 	if (i == 0)
-		return (0);
+		return (free(str), 0);
 	return (free_arr(nums), free(str), 1);
 }
 
@@ -139,19 +137,20 @@ char	*arr_strjoin(char **str, size_t size)
 	if (!str[0][0] || ft_strlen(tr) == 0)
 		return (free(tr), NULL);
 	result = ft_strdup(str[0]);
+	free(tr);
 	while (++i < size)
 	{
 		tr = ft_strtrim(str[i], " ");
 		if (!str[i][0] || ft_strlen(tr) == 0)
 			return (free(tr), free(result), NULL);
+		free(tr);
 		temp = ft_strjoin(result, " ");
 		free(result);
 		result = ft_strjoin(temp, str[i]);
 		free(temp);
-		free(tr);
 		tr = NULL;
 	}
-	return (free(tr), result);
+	return (result);
 }
 
 void	print_list(t_list *head)
