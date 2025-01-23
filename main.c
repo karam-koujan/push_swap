@@ -6,12 +6,30 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/23 10:26:16 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:27:39 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+
+char	*remove_leading_zeros(char *str)
+{
+	int		i;
+	char	*result;
+
+	i = 0;
+	if (str[0] == '-' || str[0] == '+')
+	{
+		i++;
+	}
+	while (str[i] == '0')
+		i++;
+	if (str[i] == '\0')
+		return (ft_strdup("0"));
+	result = ft_strdup(str + i);
+	return (result);
+}
 
 int	is_number(char *str)
 {
@@ -24,6 +42,8 @@ int	is_number(char *str)
 		i++;
 	if (i > 1)
 		return (0);
+	while (str[i] == ' ')
+		i++;
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
@@ -72,25 +92,35 @@ void	free_arr(char **arr)
 
 int	check_nums(char *str, t_list **head)
 {
-	char		**nums;
-	int			i;
-	int			nb;
+	char	**nums;
+	int		i;
+	int		nb;
+	char	*c_nums;
 
 	i = 0;
+	if (str == NULL || !*str)
+		return (0);
 	nums = ft_split(str, ' ');
+	if (!nums)
+		return (0);
+	c_nums = NULL;
 	while (nums[i])
 	{
 		if (!is_number(nums[i]))
-			return (free_arr(nums), free(str), 0);
+			return (free_arr(nums), free(c_nums), free(str), 0);
 		nb = ft_atoi(nums[i]);
-		if ((nb == 0 || nb == -1) && ft_strlen(nums[i]) > 2)
-			return (free_arr(nums), free(str), 0);
+		c_nums = remove_leading_zeros(nums[i]);
+		if ((nb == 0 || nb == -1) && ft_strlen(c_nums) > 2)
+			return (free_arr(nums), free(c_nums), free(str), 0);
 		if (i == 0)
 			*head = ft_lstnew(nb);
 		else
 			ft_lstadd_back(head, ft_lstnew(nb));
 		i++;
+		free(c_nums);
 	}
+	if (i == 0)
+		return (0);
 	return (free_arr(nums), free(str), 1);
 }
 
@@ -103,9 +133,14 @@ char	*arr_strjoin(char **str, size_t size)
 	if (size == 0)
 		return (NULL);
 	i = 0;
+	temp = NULL;
+	if (!is_number(str[0]))
+		return (NULL);
 	result = ft_strdup(str[0]);
 	while (++i < size)
 	{
+		if (!is_number(str[i]))
+			return (free(result), NULL);
 		temp = ft_strjoin(result, " ");
 		free(result);
 		result = ft_strjoin(temp, str[i]);
@@ -128,7 +163,7 @@ void	f(){system("leaks push_swap");}
 int	main(int ac, char **av)
 {
 	t_list	*head;
-	atexit(f);
+	//atexit(f);
 	if (ac == 1)
 		return (1);
 	if (ac == 2)
