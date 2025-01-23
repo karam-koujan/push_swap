@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/22 20:59:44 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/23 10:26:16 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,18 @@ int	is_dup(t_list	*head)
 	}
 	return (0);
 }
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
 
 int	check_nums(char *str, t_list **head)
 {
@@ -69,43 +81,37 @@ int	check_nums(char *str, t_list **head)
 	while (nums[i])
 	{
 		if (!is_number(nums[i]))
-			return (0);
+			return (free_arr(nums), free(str), 0);
 		nb = ft_atoi(nums[i]);
 		if ((nb == 0 || nb == -1) && ft_strlen(nums[i]) > 2)
-			return (0);
+			return (free_arr(nums), free(str), 0);
 		if (i == 0)
 			*head = ft_lstnew(nb);
 		else
 			ft_lstadd_back(head, ft_lstnew(nb));
 		i++;
-		free(nums[i]);
 	}
-	free(nums);
-	return (1);
+	return (free_arr(nums), free(str), 1);
 }
 
 char	*arr_strjoin(char **str, size_t size)
 {
 	size_t	i;
-	char	*arr;
-	char	*prev;
-	char	*tmp;
+	char	*result;
+	char	*temp;
 
-	arr = NULL;
+	if (size == 0)
+		return (NULL);
 	i = 0;
-	prev = ft_strdup(str[0]);
+	result = ft_strdup(str[0]);
 	while (++i < size)
 	{
-		free(prev);
-		prev = ft_strjoin(prev, " ");
-		free(arr);
-		tmp = prev;
-		arr = ft_strjoin(prev, str[i]);
-		free(tmp);
-		prev = arr;
+		temp = ft_strjoin(result, " ");
+		free(result);
+		result = ft_strjoin(temp, str[i]);
+		free(temp);
 	}
-	free(prev);
-	return (arr);
+	return (result);
 }
 
 void	print_list(t_list *head)
@@ -127,12 +133,14 @@ int	main(int ac, char **av)
 		return (1);
 	if (ac == 2)
 	{
-		if (!check_nums(av[1], &head) && printf("Error\n"))
+		if (!check_nums(ft_strdup(av[1]), &head) && printf("Error\n"))
 			return (1);
 	}
-	if (!check_nums(arr_strjoin(av + 1, ac - 1), &head) && printf("Error\n"))
-		return (1);
+	else if(!check_nums(arr_strjoin(av + 1, ac - 1), &head) && printf("Error\n"))
+		return (ft_lstclear(&head, free),1);
 	print_list(head);
 	if (is_dup(head) && printf("Error\n"))
 		return (ft_lstclear(&head, free),1);
+	ft_lstclear(&head, free);
+	//free(head);
 }
