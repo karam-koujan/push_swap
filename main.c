@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/23 13:58:28 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/23 20:57:11 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	is_dup(t_list	*head)
 		head = head->next;
 		if (head)
 		{
-		node = head->next;			
+			node = head->next;			
 		}
 	}
 	return (0);
@@ -97,15 +97,15 @@ int	check_nums(char *str, t_list **head)
 	int		nb;
 	char	*c_nums;
 
-	i = 0;
+	i = -1;
 	if (str == NULL || !*str)
 		return (free(str), 0);
 	nums = ft_split(str, ' ');
 	c_nums = NULL;
-	while (nums[i])
+	while (nums[++i])
 	{
 		if (!is_number(nums[i]))
-			return (free_arr(nums), free(c_nums), free(str), 0);
+			return (free_arr(nums),free(str), 0);
 		nb = ft_atoi(nums[i]);
 		c_nums = remove_leading_zeros(nums[i]);
 		if ((nb == 0 || nb == -1) && ft_strlen(c_nums) > 2)
@@ -114,7 +114,6 @@ int	check_nums(char *str, t_list **head)
 			*head = ft_lstnew(nb);
 		else
 			ft_lstadd_back(head, ft_lstnew(nb));
-		i++;
 		free(c_nums);
 	}
 	if (i == 0)
@@ -173,7 +172,7 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		if (!check_nums(ft_strdup(av[1]), &head) && printf("Error\n"))
-			return (1);
+			return (ft_lstclear(&head, free),1);
 	}
 	else if(!check_nums(arr_strjoin(av + 1, ac - 1), &head) && printf("Error\n"))
 		return (ft_lstclear(&head, free),1);
