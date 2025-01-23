@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/23 12:27:39 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/23 13:00:57 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,22 +129,26 @@ char	*arr_strjoin(char **str, size_t size)
 	size_t	i;
 	char	*result;
 	char	*temp;
+	char	*tr;
 
 	if (size == 0)
 		return (NULL);
 	i = 0;
 	temp = NULL;
-	if (!is_number(str[0]))
-		return (NULL);
+	tr = ft_strtrim(str[0], " ");
+	if (!str[0][0] || ft_strlen(tr) == 0)
+		return (free(tr), NULL);
 	result = ft_strdup(str[0]);
 	while (++i < size)
 	{
-		if (!is_number(str[i]))
-			return (free(result), NULL);
+		tr = ft_strtrim(str[i], " ");
+		if (!str[i][0] || ft_strlen(tr) == 0)
+			return (free(tr), free(result), NULL);
 		temp = ft_strjoin(result, " ");
 		free(result);
 		result = ft_strjoin(temp, str[i]);
 		free(temp);
+		free(tr);
 	}
 	return (result);
 }
@@ -163,7 +167,7 @@ void	f(){system("leaks push_swap");}
 int	main(int ac, char **av)
 {
 	t_list	*head;
-	//atexit(f);
+	atexit(f);
 	if (ac == 1)
 		return (1);
 	if (ac == 2)
