@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations_extra.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/26 17:16:37 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/01/26 17:19:49 by kkoujan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	rrotation(t_list **head, char stack)
+{
+	if (!head && !*head)
+		return ;
+	*head = ft_lstrev(*head);
+	rotation(head, 's');
+	*head = ft_lstrev(*head);
+	if (stack == 'a')
+		printf("rra\n");
+	if (stack == 'b')
+		printf("rrb\n");
+}
+
+void	rrr(t_list **stack_a, t_list **stack_b)
+{
+	rrotation(stack_a, 's');
+	rrotation(stack_b, 's');
+	printf("rrr\n");
+}
