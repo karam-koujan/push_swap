@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 14:38:27 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/26 14:54:07 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	check_nums(char *str)
 	return (free(str_copy), 1);
 }
 
-
 int	parse_nums(char *str, t_list **head)
 {
 	char	**nums;
@@ -136,39 +135,39 @@ int	parse_nums(char *str, t_list **head)
 	return (free_arr(nums), free(str), 1);
 }
 
+int	trim(char *str)
+{
+	char	*tr;
+
+	tr = ft_strtrim(str, " ");
+	if (!tr || !str[0] || ft_strlen(tr) == 0)
+		return (free(tr), 0);
+	return (free(tr), 1);
+}
+
 char	*arr_strjoin(char **str, size_t size)
 {
 	size_t	i;
 	char	*result;
 	char	*temp;
-	char	*tr;
 
 	if (size == 0)
 		return (NULL);
 	i = 0;
 	temp = NULL;
-	tr = ft_strtrim(str[0], " ");
-	if (!tr || !str[0][0] || ft_strlen(tr) == 0)
-		return (free(tr), NULL);
+	if (!trim(str[0]))
+		return (NULL);
 	result = ft_strdup(str[0]);
 	if (!result)
-		return (free(tr), NULL);
-	free(tr);
+		return (NULL);
 	while (++i < size)
 	{
-		tr = ft_strtrim(str[i], " ");
-		if (!tr || !str[i][0] || ft_strlen(tr) == 0)
-			return (free(tr), free(result), NULL);
-		free(tr);
-		temp = ft_strjoin(result, " ");
-		if (!temp)
+		if (!trim(str[i]))
 			return (free(result), NULL);
+		temp = ft_strjoin(result, " ");
 		free(result);
 		result = ft_strjoin(temp, str[i]);
-		if (!result)
-			return (free(temp), NULL);
 		free(temp);
-		tr = NULL;
 	}
 	return (result);
 }
