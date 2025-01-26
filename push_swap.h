@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 16:46:15 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/26 17:20:11 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,7 @@ void	ss(t_list **stack_a, t_list **stack_b);
 void	push(t_list **stack_a, t_list **stack_b, char stack);
 void	rotation(t_list **head, char stack);
 void	rr(t_list **stack_a, t_list **stack_b);
+t_list	*ft_lstrev(t_list *lst);
+void	rrotation(t_list **head, char stack);
+void	rrr(t_list **stack_a, t_list **stack_b);
 #endif

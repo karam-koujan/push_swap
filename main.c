@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 16:46:46 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/26 17:22:48 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,20 @@ int	main(int ac, char **av)
 	// rotation(&head, 'a');
 	// rotation(&lb, 'b');
 	rr(&head,&lb);
+	print_list(lb);
+	printf("\n");
+	print_list(head);
+	rrr(&head, &lb);
+	print_list(lb);
+	printf("\n");
+	print_list(head);
+	swap(&head,'a');
+	print_list(lb);
+	printf("\n");
+	print_list(head);
+	push(&head, &lb, 'a');
+	push(&head, &lb, 'a');
+	push(&head, &lb, 'a');
 	print_list(lb);
 	printf("\n");
 	print_list(head);
