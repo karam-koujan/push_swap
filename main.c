@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 15:08:34 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/26 16:22:08 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	f(){system("leaks push_swap");}
 int	main(int ac, char **av)
 {
 	t_list	*head;
-	atexit(f);
+	// atexit(f);
 	if (ac == 1)
 		return (1);
 	if (ac == 2)
@@ -31,5 +31,19 @@ int	main(int ac, char **av)
 	print_list(head);
 	if (is_dup(head) && write(2, "Error\n", 6))
 		return (ft_lstclear(&head, free), 1);
-	ft_lstclear(&head, free);
+	// ft_lstclear(&head, free);
+	t_list *lb;
+	lb = NULL;
+	swap(&head,'a');
+	printf("\n");
+	print_list(head);
+	push(&lb, &head, 'b');
+	push(&lb, &head, 'b');
+	push(&lb, &head, 'b');
+	printf("\n");
+	//print_list(head);
+	print_list(lb);
+	printf("\n");
+	//print_list(head);
+	print_list(head);
 }
