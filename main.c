@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 14:21:09 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/26 14:38:27 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	parse_nums(char *str, t_list **head)
 {
 	char	**nums;
 	int		i;
-	int		nb;
 
 	i = -1;
 	if (str == NULL || !*str)
@@ -123,15 +122,14 @@ int	parse_nums(char *str, t_list **head)
 	{
 		if (!check_nums(nums[i]))
 			return (free_arr(nums), free(str), 0);
-		nb = ft_atoi(nums[i]);
 		if (i == 0)
 		{
-			*head = ft_lstnew(nb);
+			*head = ft_lstnew(ft_atoi(nums[i]));
 			if (!head)
 				return (free_arr(nums), free(str), 0);
 		}
 		else
-			ft_lstadd_back(head, ft_lstnew(nb));
+			ft_lstadd_back(head, ft_lstnew(ft_atoi(nums[i])));
 	}
 	if (i == 0)
 		return (free(str), 0);
