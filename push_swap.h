@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 16:01:06 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/26 16:46:15 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ int		parse_nums(char *str, t_list **head);
 void	swap(t_list **head, char stack);
 void	ss(t_list **stack_a, t_list **stack_b);
 void	push(t_list **stack_a, t_list **stack_b, char stack);
+void	rotation(t_list **head, char stack);
+void	rr(t_list **stack_a, t_list **stack_b);
 #endif
