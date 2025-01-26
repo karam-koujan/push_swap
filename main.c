@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 14:00:10 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/26 14:21:09 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,28 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
-int	check_nums(char *str, t_list **head)
+int	check_nums(char *str)
+{
+	int		nb;
+	char	*str_copy;
+
+	if (!is_number(str))
+		return (0);
+	nb = ft_atoi(str);
+	str_copy = remove_leading_zeros(str);
+	if (!str_copy)
+		return (0);
+	if ((nb == 0 || nb == -1) && ft_strlen(str_copy) > 2)
+		return (free(str_copy), 0);
+	return (free(str_copy), 1);
+}
+
+
+int	parse_nums(char *str, t_list **head)
 {
 	char	**nums;
 	int		i;
 	int		nb;
-	char	*c_nums;
 
 	i = -1;
 	if (str == NULL || !*str)
@@ -103,26 +119,19 @@ int	check_nums(char *str, t_list **head)
 	nums = ft_split(str, ' ');
 	if (!nums)
 		return (free(str), 0);
-	c_nums = NULL;
 	while (nums[++i])
 	{
-		if (!is_number(nums[i]))
+		if (!check_nums(nums[i]))
 			return (free_arr(nums), free(str), 0);
 		nb = ft_atoi(nums[i]);
-		c_nums = remove_leading_zeros(nums[i]);
-		if (!c_nums)
-			return (free(str), free_arr(nums), 0);
-		if ((nb == 0 || nb == -1) && ft_strlen(c_nums) > 2)
-			return (free_arr(nums), free(c_nums), free(str), 0);
 		if (i == 0)
 		{
 			*head = ft_lstnew(nb);
 			if (!head)
-				return (free_arr(nums), free(c_nums), free(str), 0);
+				return (free_arr(nums), free(str), 0);
 		}
 		else
 			ft_lstadd_back(head, ft_lstnew(nb));
-		free(c_nums);
 	}
 	if (i == 0)
 		return (free(str), 0);
@@ -185,10 +194,10 @@ int	main(int ac, char **av)
 		return (1);
 	if (ac == 2)
 	{
-		if (!check_nums(ft_strdup(av[1]), &head) && write(2, "Error\n", 6))
+		if (!parse_nums(ft_strdup(av[1]), &head) && write(2, "Error\n", 6))
 			return (ft_lstclear(&head, free), 1);
 	}
-	else if (!check_nums(arr_strjoin(av + 1, ac - 1), &head) \
+	else if (!parse_nums(arr_strjoin(av + 1, ac - 1), &head) \
 	&& write(2, "Error\n", 6))
 		return (ft_lstclear(&head, free), 1);
 	print_list(head);
