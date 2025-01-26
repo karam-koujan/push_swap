@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/23 20:57:11 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/26 14:00:10 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,25 @@ int	check_nums(char *str, t_list **head)
 	if (str == NULL || !*str)
 		return (free(str), 0);
 	nums = ft_split(str, ' ');
+	if (!nums)
+		return (free(str), 0);
 	c_nums = NULL;
 	while (nums[++i])
 	{
 		if (!is_number(nums[i]))
-			return (free_arr(nums),free(str), 0);
+			return (free_arr(nums), free(str), 0);
 		nb = ft_atoi(nums[i]);
 		c_nums = remove_leading_zeros(nums[i]);
+		if (!c_nums)
+			return (free(str), free_arr(nums), 0);
 		if ((nb == 0 || nb == -1) && ft_strlen(c_nums) > 2)
 			return (free_arr(nums), free(c_nums), free(str), 0);
 		if (i == 0)
+		{
 			*head = ft_lstnew(nb);
+			if (!head)
+				return (free_arr(nums), free(c_nums), free(str), 0);
+		}
 		else
 			ft_lstadd_back(head, ft_lstnew(nb));
 		free(c_nums);
@@ -133,19 +141,25 @@ char	*arr_strjoin(char **str, size_t size)
 	i = 0;
 	temp = NULL;
 	tr = ft_strtrim(str[0], " ");
-	if (!str[0][0] || ft_strlen(tr) == 0)
+	if (!tr || !str[0][0] || ft_strlen(tr) == 0)
 		return (free(tr), NULL);
 	result = ft_strdup(str[0]);
+	if (!result)
+		return (free(tr), NULL);
 	free(tr);
 	while (++i < size)
 	{
 		tr = ft_strtrim(str[i], " ");
-		if (!str[i][0] || ft_strlen(tr) == 0)
+		if (!tr || !str[i][0] || ft_strlen(tr) == 0)
 			return (free(tr), free(result), NULL);
 		free(tr);
 		temp = ft_strjoin(result, " ");
+		if (!temp)
+			return (free(result), NULL);
 		free(result);
 		result = ft_strjoin(temp, str[i]);
+		if (!result)
+			return (free(temp), NULL);
 		free(temp);
 		tr = NULL;
 	}
@@ -171,14 +185,14 @@ int	main(int ac, char **av)
 		return (1);
 	if (ac == 2)
 	{
-		if (!check_nums(ft_strdup(av[1]), &head) && printf("Error\n"))
-			return (ft_lstclear(&head, free),1);
+		if (!check_nums(ft_strdup(av[1]), &head) && write(2, "Error\n", 6))
+			return (ft_lstclear(&head, free), 1);
 	}
-	else if(!check_nums(arr_strjoin(av + 1, ac - 1), &head) && printf("Error\n"))
-		return (ft_lstclear(&head, free),1);
+	else if (!check_nums(arr_strjoin(av + 1, ac - 1), &head) \
+	&& write(2, "Error\n", 6))
+		return (ft_lstclear(&head, free), 1);
 	print_list(head);
-	if (is_dup(head) && printf("Error\n"))
-		return (ft_lstclear(&head, free),1);
+	if (is_dup(head) && write(2, "Error\n", 6))
+		return (ft_lstclear(&head, free), 1);
 	ft_lstclear(&head, free);
-	//free(head);
 }
