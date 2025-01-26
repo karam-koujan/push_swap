@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 15:11:08 by kkoujan          ###   ########.fr       */
+/*   Created: 2025/01/26 15:07:44 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/01/26 15:09:08 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft.h"
-# include <stdio.h>
+void	print_list(t_list *head)
+{
+	while (head)
+	{
+		printf("%i ", head->content);
+		head = head->next;
+	}
+}
 
-void	print_list(t_list *head);
-void	free_arr(char **arr);
-char	*remove_leading_zeros(char *str);
-int		trim(char *str);
-int		check_nums(char *str);
-char	*arr_strjoin(char **str, size_t size);
-int		is_dup(t_list	*head);
-int		is_number(char *str);
-int		parse_nums(char *str, t_list **head);
-#endif
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
