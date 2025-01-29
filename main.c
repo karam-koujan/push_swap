@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/29 13:37:58 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/29 15:49:54 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,48 @@ void	sort_three(t_list **stack_a)
 	}
 }
 
+void	sort_five(t_list **stack_a, t_list **stack_b)
+{
+	int		a;
+	int		b;
+	int		c;
+	t_list	*sb;
+
+	push(stack_b, stack_a, 'b');
+	push(stack_b, stack_a, 'b');
+	sb = *stack_b;
+	sort_three(stack_a);
+	a = (*stack_a)->content;
+	b = (*stack_a)->next->content;
+	c = (*stack_a)->next->next->content;
+	if (sb->content < sb->next->content)
+		swap(stack_b, 'b');
+	while (sb)
+	{
+		if (sb->content < a)
+			push(stack_a, stack_b, 'a');
+		if (sb->content > c)
+		{
+			push(stack_a, stack_b, 'a');
+			rotation(stack_a, 'a');
+		}
+		else if (sb->content < c && sb->content > a && sb->content < b)
+		{
+			push(stack_a, stack_b, 'a');
+			swap(stack_a, 'a');
+		}
+		else if (sb->content < c && sb->content > a && sb->content > b)
+		{
+			rotation(stack_a, 'a');
+			rotation(stack_a, 'a');
+			push(stack_a, stack_b, 'a');
+			rrotation(stack_a, 'a');
+			rrotation(stack_a, 'a');
+		}
+		sb = sb->next;
+	}
+}
+
 void	sort(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*sa;
@@ -48,6 +90,8 @@ void	sort(t_list **stack_a, t_list **stack_b)
 	sb = *stack_b;
 	if (ft_lstsize(sa) == 3)
 		sort_three(stack_a);
+	if (ft_lstsize(sa) == 5)
+		sort_five(stack_a, stack_b);
 }
 void	f(){system("leaks push_swap");}
 
@@ -67,6 +111,7 @@ int	main(int ac, char **av)
 	&& write(2, "Error\n", 6))
 		return (ft_lstclear(&head, free), 1);
 	print_list(head);
+	printf("\n");
 	if (is_dup(head) && write(2, "Error\n", 6))
 		return (ft_lstclear(&head, free), 1);
 	// ft_lstclear(&head, free);
