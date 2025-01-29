@@ -6,17 +6,55 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 17:22:48 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/29 13:37:58 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	sort_three(t_list **stack_a)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = (*stack_a)->content;
+	b = (*stack_a)->next->content;
+	c = (*stack_a)->next->next->content;
+	if (b < a && b < c && a < c)
+		swap(stack_a, 'a');
+	else if (b < a && b < c && a > c)
+		rotation(stack_a, 'a');
+	else if (b > a && b > c && a > c)
+		rrotation(stack_a, 'a');
+	else if (b > c && b < a)
+	{
+		swap(stack_a, 'a');
+		sort_three(stack_a);
+	}
+	else if (b > c && b > a && a < c)
+	{
+		swap(stack_a, 'a');
+		sort_three(stack_a);
+	}
+}
+
+void	sort(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*sa;
+	t_list	*sb;
+
+	sa = *stack_a;
+	sb = *stack_b;
+	if (ft_lstsize(sa) == 3)
+		sort_three(stack_a);
+}
 void	f(){system("leaks push_swap");}
 
 int	main(int ac, char **av)
 {
 	t_list	*head;
+	t_list	*lb;
 	// atexit(f);
 	if (ac == 1)
 		return (1);
@@ -32,36 +70,7 @@ int	main(int ac, char **av)
 	if (is_dup(head) && write(2, "Error\n", 6))
 		return (ft_lstclear(&head, free), 1);
 	// ft_lstclear(&head, free);
-	t_list *lb;
 	lb = NULL;
-	swap(&head,'a');
-	printf("\n");
-	print_list(head);
-	push(&lb, &head, 'b');
-	push(&lb, &head, 'b');
-	push(&lb, &head, 'b');
-	printf("\n");
-	print_list(lb);
-	printf("\n");
-	print_list(head);
-	// rotation(&head, 'a');
-	// rotation(&lb, 'b');
-	rr(&head,&lb);
-	print_list(lb);
-	printf("\n");
-	print_list(head);
-	rrr(&head, &lb);
-	print_list(lb);
-	printf("\n");
-	print_list(head);
-	swap(&head,'a');
-	print_list(lb);
-	printf("\n");
-	print_list(head);
-	push(&head, &lb, 'a');
-	push(&head, &lb, 'a');
-	push(&head, &lb, 'a');
-	print_list(lb);
-	printf("\n");
+	sort(&head, &lb);
 	print_list(head);
 }
