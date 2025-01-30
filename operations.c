@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:17:46 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 17:26:19 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/30 20:23:28 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	push(t_list **stack_a, t_list **stack_b, char stack)
 		return ;
 	la = *stack_a;
 	lb = *stack_b;
-	top_b = lb->next;
 	if (ft_lstsize(lb) == 0)
 		return ;
+	top_b = lb->next;
 	ft_lstadd_front(stack_a, ft_lstnew(lb->content));
 	*stack_b = top_b;
 	ft_lstdelone(lb, free);
@@ -66,7 +66,7 @@ void	rotation(t_list **head, char stack)
 	t_list	*l;
 	t_list	*top_l;
 
-	if (!head && !*head)
+	if (!head || !*head)
 		return ;
 	top_l = *head;
 	l = *head;

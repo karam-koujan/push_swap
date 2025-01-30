@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/29 15:49:54 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/30 20:28:50 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,94 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	}
 }
 
+int	calculate_idx(t_list *stack_a, int nb)
+{
+	int		idx;
+	t_list	*la;
+
+	idx = 0;
+	la = stack_a;
+	while (la)
+	{
+		if (la->content < nb)
+			idx++;
+		la = la->next;
+	}
+	return (idx);
+}
+
+void	move_num(t_list **stack_a, t_list **stack_b, int max)
+{
+	int	i;
+
+	i = -1;
+	if (max <= ft_lstsize(*stack_b) / 2)
+		while (++i < max)
+			rotation(stack_b, 'b');
+	else
+		while (++i <= max)
+			rrotation(stack_b, 'b');
+	push(stack_a, stack_b, 'a');
+}
+
+void	insertion_sort(t_list **stack_a, t_list **stack_b)
+{
+	int		max;
+	int		max_i;
+	t_list	*lb;
+	t_list	*lb2;
+	int		i;
+
+	max_i = 0;
+	lb = *stack_b;
+	lb2 = *stack_b;
+	while (lb)
+	{
+		max = lb->content;
+		i = 0;
+		while (lb2)
+		{
+			if (lb2->content > max)
+			{
+				max_i = i;
+				max = lb2->content;
+			}
+			i++;
+			lb2 = lb2->next;
+		}
+		move_num(stack_a, stack_b, max_i);
+		lb = lb->next;
+		lb2 = lb;
+	}
+}
+
+void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk)
+{
+	t_list	*la;
+	int		idx;
+	int		b_idx;
+
+	la = *stack_a;
+	b_idx = 0;
+	while (la)
+	{
+		idx = calculate_idx(la, la->content);
+		if (idx <= b_idx)
+			push(stack_b, stack_a, 'b');
+		else if (idx <= chunk + b_idx)
+		{
+			push(stack_b, stack_a, 'b');
+			rotation(stack_b, 'b');
+		}
+		else
+			rotation(stack_a, 'a');
+		la = la->next;
+		b_idx = ft_lstsize(*stack_b);
+	}
+
+	insertion_sort(stack_a, stack_b);
+}
+
 void	sort(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*sa;
@@ -92,7 +180,12 @@ void	sort(t_list **stack_a, t_list **stack_b)
 		sort_three(stack_a);
 	if (ft_lstsize(sa) == 5)
 		sort_five(stack_a, stack_b);
+	if (ft_lstsize(sa) > 5 && ft_lstsize(sa) <= 100)
+		sort_chunk(stack_a, stack_b, 16);
+	if (ft_lstsize(sa) >= 500)
+		sort_chunk(stack_a, stack_b, 32);
 }
+
 void	f(){system("leaks push_swap");}
 
 int	main(int ac, char **av)
