@@ -6,11 +6,46 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 12:50:58 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 17:27:14 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	calculate_idx(int *arr, int size, int nb)
+{
+	int		idx;
+	int		i;
+
+	idx = 0;
+	i = 0;
+	while (i < size)
+	{
+		if (arr[i] < nb)
+			idx++;
+		i++;
+	}
+	return (idx);
+}
+
+int	*list_to_arr(t_list *stack_a)
+{
+	int		*arr;
+	t_list	*la;
+	int		i;
+
+	i = -1;
+	arr = malloc(ft_lstsize(stack_a) * sizeof(int));
+	if (!arr)
+		return (NULL);
+	la = stack_a;
+	while (la)
+	{
+		arr[++i] = la->content;
+		la = la->next;
+	}
+	return (arr);
+}
 
 void	sort_three(t_list **stack_a)
 {
@@ -45,57 +80,50 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	int		b;
 	int		c;
 	t_list	*sb;
+	//int		i;
 
+	int *arr = list_to_arr(*stack_a);
+	int	size = ft_lstsize(*stack_a);
+	// i = -1;
+	// while (++i < size)
+	// 	if (i + 1 < size && calculate_idx(arr, size, arr[i]) < calculate_idx(arr, size, arr[i + 1]))
+	// 		return ;
 	push(stack_b, stack_a, 'b');
-	push(stack_b, stack_a, 'b');
+	if (ft_lstsize(*stack_a) == 4)
+		push(stack_b, stack_a, 'b');
 	sb = *stack_b;
 	sort_three(stack_a);
 	a = (*stack_a)->content;
 	b = (*stack_a)->next->content;
 	c = (*stack_a)->next->next->content;
-	if (sb->content < sb->next->content)
-		swap(stack_b, 'b');
-	while (sb)
-	{
-		if (sb->content < a)
-			push(stack_a, stack_b, 'a');
-		if (sb->content > c)
+
+	while (*stack_b)
+	{	
+		if (calculate_idx(arr, size, (*stack_b)->content) > ft_lstsize(*stack_a) - 1)
 		{
 			push(stack_a, stack_b, 'a');
 			rotation(stack_a, 'a');
 		}
-		else if (sb->content < c && sb->content > a && sb->content < b)
+		else if (calculate_idx(arr, size, (*stack_b)->content) == 0)
+			push(stack_a, stack_b, 'a');
+		else if (calculate_idx(arr, size, (*stack_b)->content) == 1)
 		{
 			push(stack_a, stack_b, 'a');
 			swap(stack_a, 'a');
 		}
-		else if (sb->content < c && sb->content > a && sb->content > b)
+
+		else
 		{
-			rotation(stack_a, 'a');
-			rotation(stack_a, 'a');
+			rrotation(stack_a, 'a');
 			push(stack_a, stack_b, 'a');
-			rrotation(stack_a, 'a');
-			rrotation(stack_a, 'a');
+			rotation(stack_a, 'a');
+			rotation(stack_a, 'a');
 		}
-		sb = sb->next;
+
 	}
 }
 
-int	calculate_idx(int *arr, int size, int nb)
-{
-	int		idx;
-	int		i;
 
-	idx = 0;
-	i = 0;
-	while (i < size)
-	{
-		if (arr[i] < nb)
-			idx++;
-		i++;
-	}
-	return (idx);
-}
 
 void	move_num(t_list **stack_a, t_list **stack_b, int max)
 {
@@ -144,24 +172,7 @@ void	insertion_sort(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int	*list_to_arr(t_list *stack_a)
-{
-	int		*arr;
-	t_list	*la;
-	int		i;
 
-	i = -1;
-	arr = malloc(ft_lstsize(stack_a) * sizeof(int));
-	if (!arr)
-		return (NULL);
-	la = stack_a;
-	while (la)
-	{
-		arr[++i] = la->content;
-		la = la->next;
-	}
-	return (arr);
-}
 void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk)
 {
 	int		idx;
@@ -206,7 +217,7 @@ void	sort(t_list **stack_a, t_list **stack_b)
 		sort_two(stack_a);
 	if (ft_lstsize(sa) == 3)
 		sort_three(stack_a);
-	if (ft_lstsize(sa) == 5)
+	if (ft_lstsize(sa) > 3 && ft_lstsize(sa) <= 5)
 		sort_five(stack_a, stack_b);
 	if (ft_lstsize(sa) > 5 && ft_lstsize(sa) <= 100)
 		sort_chunk(stack_a, stack_b, 16);
