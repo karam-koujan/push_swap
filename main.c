@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 10:29:02 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 12:41:20 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,23 +99,21 @@ int	calculate_idx(int *arr, int size, int nb)
 
 void	move_num(t_list **stack_a, t_list **stack_b, int max)
 {
+	int	size;
 	int	i;
 
+	size = ft_lstsize(*stack_b);
 	i = -1;
-	print_list(*stack_b);
-	printf("max : %i\n", max);
-	if (max == 0 || max == ft_lstsize(*stack_a) - 1)
+	if (max <= size / 2)
 	{
-		push(stack_a, stack_b, 'a');
-		return ;
-	}
-	if (max < ft_lstsize(*stack_b) / 2)
 		while (++i < max)
 			rotation(stack_b, 'b');
+	}
 	else
-		while (++i < ft_lstsize(*stack_b) - max)
+	{
+		while (++i < size - max)
 			rrotation(stack_b, 'b');
-	printf(" max mum %i\n", (*stack_b)->content);
+	}
 	push(stack_a, stack_b, 'a');
 }
 
@@ -124,30 +122,25 @@ void	insertion_sort(t_list **stack_a, t_list **stack_b)
 	int		max;
 	int		max_i;
 	t_list	*lb;
-	t_list	*lb2;
 	int		i;
 
-	max_i = 0;
-	lb = *stack_b;
-	lb2 = *stack_b;
-	while (lb)
+	while (*stack_b)
 	{
-		max = lb->content;
+		max = (*stack_b)->content;
+		max_i = 0;
+		lb = *stack_b;
 		i = 0;
-		while (lb2)
+		while (lb)
 		{
-			if (lb2->content > max)
+			if (lb->content > max)
 			{
+				max = lb->content;
 				max_i = i;
-				max = lb2->content;
 			}
+			lb = lb->next;
 			i++;
-			lb2 = lb2->next;
 		}
 		move_num(stack_a, stack_b, max_i);
-		lb = lb->next;
-		lb2 = lb;
-		max_i = 0;
 	}
 }
 
@@ -160,7 +153,7 @@ int	*list_to_arr(t_list *stack_a)
 	i = -1;
 	arr = malloc(ft_lstsize(stack_a) * sizeof(int));
 	if (!arr)
-		return NULL;
+		return (NULL);
 	la = stack_a;
 	while (la)
 	{
@@ -171,20 +164,19 @@ int	*list_to_arr(t_list *stack_a)
 }
 void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk)
 {
-	t_list	*la;
 	int		idx;
 	int		b_idx;
 	int		*arr;
 	int		size;
 
-	la = *stack_a;
 	b_idx = 0;
 	arr = list_to_arr(*stack_a);
+	if (!arr)
+		return ;
 	size = ft_lstsize(*stack_a);
 	while (*stack_a)
 	{
-		idx = calculate_idx(arr, size,(*stack_a)->content);
-		printf("content : %i idx : %i b_idx: %i", la->content ,idx, b_idx);
+		idx = calculate_idx(arr, size, (*stack_a)->content);
 		if (idx <= b_idx)
 			push(stack_b, stack_a, 'b');
 		else if (idx <= chunk + b_idx)
@@ -196,9 +188,7 @@ void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk)
 			rotation(stack_a, 'a');
 		b_idx = ft_lstsize(*stack_b);
 	}
-	printf("this is stack_b \n");
-	print_list(*stack_b);
-	insertion_sort(stack_a, stack_b);
+	return (free(arr), insertion_sort(stack_a, stack_b));
 }
 
 void	sort(t_list **stack_a, t_list **stack_b)
@@ -214,7 +204,7 @@ void	sort(t_list **stack_a, t_list **stack_b)
 		sort_five(stack_a, stack_b);
 	if (ft_lstsize(sa) > 5 && ft_lstsize(sa) <= 100)
 		sort_chunk(stack_a, stack_b, 16);
-	if (ft_lstsize(sa) >= 500)
+	if (ft_lstsize(sa) > 100)
 		sort_chunk(stack_a, stack_b, 32);
 }
 
@@ -235,12 +225,12 @@ int	main(int ac, char **av)
 	else if (!parse_nums(arr_strjoin(av + 1, ac - 1), &head) \
 	&& write(2, "Error\n", 6))
 		return (ft_lstclear(&head, free), 1);
-	print_list(head);
-	printf("\n");
+	//print_list(head);
+	//printf("\n");
 	if (is_dup(head) && write(2, "Error\n", 6))
 		return (ft_lstclear(&head, free), 1);
 	// ft_lstclear(&head, free);
 	lb = NULL;
 	sort(&head, &lb);
-	print_list(head);
+	//print_list(head);
 }

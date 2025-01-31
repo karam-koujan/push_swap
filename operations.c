@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:17:46 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/30 20:23:28 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 12:05:27 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,19 @@ void	ss(t_list **stack_a, t_list **stack_b)
 
 void	push(t_list **stack_a, t_list **stack_b, char stack)
 {
-	t_list	*la;
 	t_list	*lb;
 	t_list	*top_b;
 
-	if (!stack_b && !*stack_b)
+	if (!stack_b || !*stack_b)
 		return ;
-	la = *stack_a;
 	lb = *stack_b;
-	if (ft_lstsize(lb) == 0)
-		return ;
 	top_b = lb->next;
-	ft_lstadd_front(stack_a, ft_lstnew(lb->content));
+	lb->next = *stack_a;
+	*stack_a = lb;
 	*stack_b = top_b;
-	ft_lstdelone(lb, free);
 	if (stack == 'a')
 		printf("pa\n");
-	if (stack == 'b')
+	else if (stack == 'b')
 		printf("pb\n");
 }
 
@@ -66,7 +62,9 @@ void	rotation(t_list **head, char stack)
 	t_list	*l;
 	t_list	*top_l;
 
-	if (!head || !*head)
+	if (!head)
+		return ;
+	if (!*head)
 		return ;
 	top_l = *head;
 	l = *head;

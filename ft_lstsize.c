@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:20:18 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/26 15:20:20 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 11:59:06 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ int	ft_lstsize(t_list *lst)
 	t_list	*l;
 	int		count;
 
-	count = 1;
+	count = 0;
 	l = lst;
-	if (l == NULL)
-		return (0);
-	while (l->next)
+	while (l)
 	{
 		count++;
 		l = l->next;
