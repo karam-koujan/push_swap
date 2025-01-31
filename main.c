@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/30 20:28:50 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 10:29:02 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,18 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int	calculate_idx(t_list *stack_a, int nb)
+int	calculate_idx(int *arr, int size, int nb)
 {
 	int		idx;
-	t_list	*la;
+	int		i;
 
 	idx = 0;
-	la = stack_a;
-	while (la)
+	i = 0;
+	while (i < size)
 	{
-		if (la->content < nb)
+		if (arr[i] < nb)
 			idx++;
-		la = la->next;
+		i++;
 	}
 	return (idx);
 }
@@ -102,12 +102,20 @@ void	move_num(t_list **stack_a, t_list **stack_b, int max)
 	int	i;
 
 	i = -1;
-	if (max <= ft_lstsize(*stack_b) / 2)
+	print_list(*stack_b);
+	printf("max : %i\n", max);
+	if (max == 0 || max == ft_lstsize(*stack_a) - 1)
+	{
+		push(stack_a, stack_b, 'a');
+		return ;
+	}
+	if (max < ft_lstsize(*stack_b) / 2)
 		while (++i < max)
 			rotation(stack_b, 'b');
 	else
-		while (++i <= max)
+		while (++i < ft_lstsize(*stack_b) - max)
 			rrotation(stack_b, 'b');
+	printf(" max mum %i\n", (*stack_b)->content);
 	push(stack_a, stack_b, 'a');
 }
 
@@ -139,20 +147,44 @@ void	insertion_sort(t_list **stack_a, t_list **stack_b)
 		move_num(stack_a, stack_b, max_i);
 		lb = lb->next;
 		lb2 = lb;
+		max_i = 0;
 	}
 }
 
+int	*list_to_arr(t_list *stack_a)
+{
+	int		*arr;
+	t_list	*la;
+	int		i;
+
+	i = -1;
+	arr = malloc(ft_lstsize(stack_a) * sizeof(int));
+	if (!arr)
+		return NULL;
+	la = stack_a;
+	while (la)
+	{
+		arr[++i] = la->content;
+		la = la->next;
+	}
+	return (arr);
+}
 void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk)
 {
 	t_list	*la;
 	int		idx;
 	int		b_idx;
+	int		*arr;
+	int		size;
 
 	la = *stack_a;
 	b_idx = 0;
-	while (la)
+	arr = list_to_arr(*stack_a);
+	size = ft_lstsize(*stack_a);
+	while (*stack_a)
 	{
-		idx = calculate_idx(la, la->content);
+		idx = calculate_idx(arr, size,(*stack_a)->content);
+		printf("content : %i idx : %i b_idx: %i", la->content ,idx, b_idx);
 		if (idx <= b_idx)
 			push(stack_b, stack_a, 'b');
 		else if (idx <= chunk + b_idx)
@@ -162,10 +194,10 @@ void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk)
 		}
 		else
 			rotation(stack_a, 'a');
-		la = la->next;
 		b_idx = ft_lstsize(*stack_b);
 	}
-
+	printf("this is stack_b \n");
+	print_list(*stack_b);
 	insertion_sort(stack_a, stack_b);
 }
 
