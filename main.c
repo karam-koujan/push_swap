@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 12:41:20 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 12:50:58 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,11 @@ void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk)
 	}
 	return (free(arr), insertion_sort(stack_a, stack_b));
 }
-
+void	sort_two(t_list **stack_a)
+{
+	if ((*stack_a)->content > (*stack_a)->next->content)
+		swap(stack_a, 'a');
+}
 void	sort(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*sa;
@@ -198,6 +202,8 @@ void	sort(t_list **stack_a, t_list **stack_b)
 
 	sa = *stack_a;
 	sb = *stack_b;
+	if (ft_lstsize(sa) == 2)
+		sort_two(stack_a);
 	if (ft_lstsize(sa) == 3)
 		sort_three(stack_a);
 	if (ft_lstsize(sa) == 5)
