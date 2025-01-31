@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/30 20:10:37 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 19:53:08 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include <stdio.h>
-#include "limits.h"
+# include "limits.h"
 
 void	print_list(t_list *head);
 void	free_arr(char **arr);
@@ -34,4 +34,13 @@ void	rr(t_list **stack_a, t_list **stack_b);
 t_list	*ft_lstrev(t_list *lst);
 void	rrotation(t_list **head, char stack);
 void	rrr(t_list **stack_a, t_list **stack_b);
+void	insertion_sort(t_list **stack_a, t_list **stack_b);
+void	sort_five(t_list **stack_a, t_list **stack_b);
+void	sort_three(t_list **stack_a);
+void	sort_two(t_list **stack_a);
+void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk);
+void	sort(t_list **stack_a, t_list **stack_b);
+void	move_num(t_list **stack_a, t_list **stack_b, int max);
+int		*list_to_arr(t_list *stack_a);
+int		calculate_idx(int *arr, int size, int nb);
 #endif
