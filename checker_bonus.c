@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 21:16:20 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 21:48:53 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ int	main(int ac, char **av)
 			rotation(&head, 's');
 		else if (ft_strncmp(inst, "rb", 2) == 0)
 			rotation(&lb, 's');
-		else if (ft_strncmp(inst, "rr", 2) == 0)
+		else if (ft_strncmp(inst, "rr", 2) == 0 && ft_strlen(inst) - 1 == 2)
 			checker_rr(&head, &lb);
-		else if (ft_strncmp(inst, "rra", 2) == 0)
+		else if (ft_strncmp(inst, "rra", 3) == 0)
 			rrotation(&head, 's');
-		else if (ft_strncmp(inst, "rrb", 2) == 0)
+		else if (ft_strncmp(inst, "rrb", 3) == 0)
 			rrotation(&lb, 's');
-		else if (ft_strncmp(inst, "rrr", 2) == 0)
+		else if (ft_strncmp(inst, "rrr", 3) == 0)
 			checker_rrr(&head, &lb);
 		free(inst);
 		inst = get_next_line(0);
@@ -85,4 +85,3 @@ int	main(int ac, char **av)
 		printf("KO\n");
 	ft_lstclear(&head, free);
 }
-
