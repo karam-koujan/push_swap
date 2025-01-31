@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 21:14:53 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 21:23:26 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,8 @@ int		calculate_idx(int *arr, int size, int nb);
 void	checker_rrr(t_list **stack_a, t_list **stack_b);
 void	checker_rr(t_list **stack_a, t_list **stack_b);
 void	checker_ss(t_list **stack_a, t_list **stack_b);
+int		calculate_idx(int *arr, int size, int nb);
+int		*list_to_arr(t_list *stack_a);
+void	move_num(t_list **stack_a, t_list **stack_b, int max);
+void	sort(t_list **stack_a, t_list **stack_b);
 #endif
