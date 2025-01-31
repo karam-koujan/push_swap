@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 19:53:08 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 21:14:53 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <stdio.h>
 # include "limits.h"
+# include "get_next_line.h"
 
 void	print_list(t_list *head);
 void	free_arr(char **arr);
@@ -43,4 +44,7 @@ void	sort(t_list **stack_a, t_list **stack_b);
 void	move_num(t_list **stack_a, t_list **stack_b, int max);
 int		*list_to_arr(t_list *stack_a);
 int		calculate_idx(int *arr, int size, int nb);
+void	checker_rrr(t_list **stack_a, t_list **stack_b);
+void	checker_rr(t_list **stack_a, t_list **stack_b);
+void	checker_ss(t_list **stack_a, t_list **stack_b);
 #endif

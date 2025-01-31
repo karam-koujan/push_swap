@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 17:16:37 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 11:38:43 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/01/31 21:14:46 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,22 @@ void	rrr(t_list **stack_a, t_list **stack_b)
 	rrotation(stack_a, 's');
 	rrotation(stack_b, 's');
 	printf("rrr\n");
+}
+
+void	checker_rrr(t_list **stack_a, t_list **stack_b)
+{
+	rrotation(stack_a, 's');
+	rrotation(stack_b, 's');
+}
+
+void	checker_rr(t_list **stack_a, t_list **stack_b)
+{
+	rotation(stack_a, 's');
+	rotation(stack_b, 's');
+}
+
+void	checker_ss(t_list **stack_a, t_list **stack_b)
+{
+	swap(stack_a, 's');
+	swap(stack_b, 's');
 }
