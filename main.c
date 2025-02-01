@@ -6,21 +6,17 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 21:21:52 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:16:38 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-
-void	f(){system("leaks push_swap");}
-
 int	main(int ac, char **av)
 {
 	t_list	*head;
 	t_list	*lb;
-	// atexit(f);
+
 	if (ac == 1)
 		return (1);
 	if (ac == 2)

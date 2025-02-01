@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 21:48:53 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:17:43 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 	t_list	*head;
 	t_list	*lb;
 	char	*inst;
-	// atexit(f);
+
 	if (ac == 1)
 		return (1);
 	if (ac == 2)
@@ -85,3 +85,4 @@ int	main(int ac, char **av)
 		printf("KO\n");
 	ft_lstclear(&head, free);
 }
+
