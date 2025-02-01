@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 21:23:26 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 16:57:40 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	sort_three(t_list **stack_a);
 void	sort_two(t_list **stack_a);
 void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk);
 void	sort(t_list **stack_a, t_list **stack_b);
-void	move_num(t_list **stack_a, t_list **stack_b, int max);
 int		*list_to_arr(t_list *stack_a);
 int		calculate_idx(int *arr, int size, int nb);
 void	checker_rrr(t_list **stack_a, t_list **stack_b);
@@ -49,6 +48,7 @@ void	checker_rr(t_list **stack_a, t_list **stack_b);
 void	checker_ss(t_list **stack_a, t_list **stack_b);
 int		calculate_idx(int *arr, int size, int nb);
 int		*list_to_arr(t_list *stack_a);
-void	move_num(t_list **stack_a, t_list **stack_b, int max);
+void	move_num(t_list **stack_a, t_list **stack_b, int max, char stack);
 void	sort(t_list **stack_a, t_list **stack_b);
+int		find_limit_idx(int	*arr, int size, char type);
 #endif

@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 19:40:23 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 19:50:33 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:14:14 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,49 +76,31 @@ void	sort_three(t_list **stack_a)
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
-	int		a;
-	int		b;
-	int		c;
-	t_list	*sb;
-	//int		i;
-	int *arr = list_to_arr(*stack_a);
-	int	size = ft_lstsize(*stack_a);
-	// i = -1;
-	// while (++i < size)
-	// 	if (i + 1 < size && calculate_idx(arr, size, arr[i]) < calculate_idx(arr, size, arr[i + 1]))
-	// 		return ;
-	push(stack_b, stack_a, 'b');
-	if (ft_lstsize(*stack_a) == 4)
-		push(stack_b, stack_a, 'b');
-	sb = *stack_b;
-	sort_three(stack_a);
-	a = (*stack_a)->content;
-	b = (*stack_a)->next->content;
-	c = (*stack_a)->next->next->content;
-	while (*stack_b)
-	{	
-		if (calculate_idx(arr, size, (*stack_b)->content) > ft_lstsize(*stack_a) - 1)
-		{
-			push(stack_a, stack_b, 'a');
-			rotation(stack_a, 'a');
-		}
-		else if (calculate_idx(arr, size, (*stack_b)->content) == 0)
-			push(stack_a, stack_b, 'a');
-		else if (calculate_idx(arr, size, (*stack_b)->content) == 1)
-		{
-			push(stack_a, stack_b, 'a');
-			swap(stack_a, 'a');
-		}
+	int		min;
+	int		max;
+	int		*arr;
+	int		size;
 
-		else
-		{
-			rrotation(stack_a, 'a');
-			push(stack_a, stack_b, 'a');
-			rotation(stack_a, 'a');
-			rotation(stack_a, 'a');
-		}
-
+	arr = list_to_arr(*stack_a);
+	size = ft_lstsize(*stack_a);
+	if (!arr)
+		return ;
+	min = find_limit_idx(arr, ft_lstsize(*stack_a), 'n');
+	free(arr);
+	move_num(stack_b, stack_a, min, 'b');
+	if (size == 5)
+	{
+		arr = list_to_arr(*stack_a);
+		max = find_limit_idx(arr, ft_lstsize(*stack_a), 'x');
+		move_num(stack_b, stack_a, max, 'b');
+		free(arr);
 	}
+	sort_three(stack_a);
+	if (size < 5)
+		return (push(stack_a, stack_b, 'a'));
+	push(stack_a, stack_b, 'a');
+	rotation(stack_a, 'a');
+	push(stack_a, stack_b, 'a');
 }
 
 void	insertion_sort(t_list **stack_a, t_list **stack_b)
@@ -144,6 +126,6 @@ void	insertion_sort(t_list **stack_a, t_list **stack_b)
 			lb = lb->next;
 			i++;
 		}
-		move_num(stack_a, stack_b, max_i);
+		move_num(stack_a, stack_b, max_i, 'a');
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:02 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 21:23:18 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:01:54 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,31 @@ int	calculate_idx(int *arr, int size, int nb)
 	return (idx);
 }
 
+int	find_limit_idx(int	*arr, int size, char type)
+{
+	int	i;
+	int	limit;
+	int	limit_idx;
+
+	i = -1;
+	limit = arr[i + 1];
+	limit_idx = 0;
+	while (++i < size)
+	{
+		if (arr[i] > limit && type == 'x')
+		{
+			limit = arr[i];
+			limit_idx = i;
+		}
+		if (arr[i] < limit && type == 'n')
+		{
+			limit = arr[i];
+			limit_idx = i;
+		}
+	}
+	return (limit_idx);
+}
+
 int	*list_to_arr(t_list *stack_a)
 {
 	int		*arr;
@@ -47,24 +72,29 @@ int	*list_to_arr(t_list *stack_a)
 	return (arr);
 }
 
-void	move_num(t_list **stack_a, t_list **stack_b, int max)
+void	move_num(t_list **stack_a, t_list **stack_b, int max, char stack)
 {
-	int	size;
-	int	i;
+	int		size;
+	int		i;
+	char	rs;
 
 	size = ft_lstsize(*stack_b);
 	i = -1;
+	if (stack == 'a')
+		rs = 'b';
+	else
+		rs = 'a';
 	if (max <= size / 2)
 	{
 		while (++i < max)
-			rotation(stack_b, 'b');
+			rotation(stack_b, rs);
 	}
 	else
 	{
 		while (++i < size - max)
-			rrotation(stack_b, 'b');
+			rrotation(stack_b, rs);
 	}
-	push(stack_a, stack_b, 'a');
+	push(stack_a, stack_b, stack);
 }
 
 void	sort(t_list **stack_a, t_list **stack_b)
