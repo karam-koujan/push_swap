@@ -6,12 +6,12 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:52:28 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 17:32:52 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:34:30 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ft_printf_H
-# define ft_printf_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
 # include <stdarg.h>
