@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 18:12:41 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 18:25:13 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,22 @@ void	preform_sorting(char *inst, t_list **head, t_list **lb)
 		return (write(2, "Error\n", 6), free(inst), free_list(head, lb), \
 		exit(0));
 }
+void	read_instructions(t_list **head, t_list **lb)
+{
+	char	*inst;
 
+	inst = get_next_line(0);
+	while (inst)
+	{
+		preform_sorting(inst, head, lb);
+		free(inst);
+		inst = get_next_line(0);
+	}
+}
 int	main(int ac, char **av)
 {
 	t_list	*head;
 	t_list	*lb;
-	char	*inst;
 
 	if (ac == 1)
 		return (1);
@@ -79,19 +89,12 @@ int	main(int ac, char **av)
 		if (!parse_nums(ft_strdup(av[1]), &head) && write(2, "Error\n", 6))
 			return (ft_lstclear(&head, free), 1);
 	}
-	else if (!parse_nums(arr_strjoin(av + 1, ac - 1), &head) \
-	&& write(2, "Error\n", 6))
-		return (ft_lstclear(&head, free), 1);
+	else if (!parse_nums(arr_strjoin(av + 1, ac - 1), &head))
+		return (write(2, "Error\n", 6), ft_lstclear(&head, free), 1);
 	if (is_dup(head) && write(2, "Error\n", 6))
 		return (ft_lstclear(&head, free), 1);
 	lb = NULL;
-	inst = get_next_line(0);
-	while (inst)
-	{
-		preform_sorting(inst, &head, &lb);
-		free(inst);
-		inst = get_next_line(0);
-	}
+	read_instructions(&head, &lb);
 	if (check_sorted(&head, &lb))
 		return (ft_printf("OK\n"), free_list(&head, &lb), 0);
 	return (ft_printf("KO\n"), free_list(&head, &lb), 0);
