@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 17:16:37 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 21:14:46 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:30:56 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	rrotation(t_list **head, char stack)
 	rotation(head, 's');
 	*head = ft_lstrev(*head);
 	if (stack == 'a')
-		printf("rra\n");
+		ft_printf("rra\n");
 	if (stack == 'b')
-		printf("rrb\n");
+		ft_printf("rrb\n");
 }
 
 void	rrr(t_list **stack_a, t_list **stack_b)
 {
 	rrotation(stack_a, 's');
 	rrotation(stack_b, 's');
-	printf("rrr\n");
+	ft_printf("rrr\n");
 }
 
 void	checker_rrr(t_list **stack_a, t_list **stack_b)

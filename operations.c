@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:17:46 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/31 12:05:27 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:30:56 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void	swap(t_list **head, char stack)
 	l->content = l->next->content;
 	l->next->content = tmp;
 	if (stack == 'a')
-		printf("sa\n");
+		ft_printf("sa\n");
 	if (stack == 'b')
-		printf("sb\n");
+		ft_printf("sb\n");
 }
 
 void	ss(t_list **stack_a, t_list **stack_b)
 {
 	swap(stack_a, 's');
 	swap(stack_b, 's');
-	printf("ss\n");
+	ft_printf("ss\n");
 }
 
 void	push(t_list **stack_a, t_list **stack_b, char stack)
@@ -51,9 +51,9 @@ void	push(t_list **stack_a, t_list **stack_b, char stack)
 	*stack_a = lb;
 	*stack_b = top_b;
 	if (stack == 'a')
-		printf("pa\n");
+		ft_printf("pa\n");
 	else if (stack == 'b')
-		printf("pb\n");
+		ft_printf("pb\n");
 }
 
 void	rotation(t_list **head, char stack)
@@ -77,14 +77,14 @@ void	rotation(t_list **head, char stack)
 	top_l->content = l->content;
 	l->content = top;
 	if (stack == 'a')
-		printf("ra\n");
+		ft_printf("ra\n");
 	if (stack == 'b')
-		printf("rb\n");
+		ft_printf("rb\n");
 }
 
 void	rr(t_list **stack_a, t_list **stack_b)
 {
 	rotation(stack_a, 's');
 	rotation(stack_b, 's');
-	printf("rr\n");
+	ft_printf("rr\n");
 }

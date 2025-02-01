@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/26 15:07:44 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 17:30:56 by kkoujan          ###   ########.fr       */
+/*   Created: 2024/10/28 09:34:40 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/02/01 17:32:52 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-void	print_list(t_list *head)
+int	ft_putchar(char c)
 {
-	while (head)
-	{
-		ft_printf("%i ", head->content);
-		head = head->next;
-	}
-}
-
-void	free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
+	write(1, &c, 1);
+	return (1);
 }

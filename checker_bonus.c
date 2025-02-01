@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 17:17:43 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:30:56 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ int	main(int ac, char **av)
 	}
 	free(inst);
 	if (check_sorted(&head, &lb))
-		printf("OK\n");
+		ft_printf("OK\n");
 	else
-		printf("KO\n");
+		ft_printf("KO\n");
 	ft_lstclear(&head, free);
 }
 

@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/26 15:07:44 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 17:30:56 by kkoujan          ###   ########.fr       */
+/*   Created: 2024/10/28 10:07:36 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/02/01 17:32:52 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-void	print_list(t_list *head)
+int	ft_putnbr(int n)
 {
-	while (head)
-	{
-		ft_printf("%i ", head->content);
-		head = head->next;
-	}
-}
+	char		r;
+	long		nbr;
+	int			count;
 
-void	free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
+	nbr = n;
+	count = 0;
+	if (nbr < 0)
 	{
-		free(arr[i]);
-		i++;
+		write(1, "-", 1);
+		count++;
+		nbr = -nbr;
 	}
-	free(arr);
+	if (nbr >= 10)
+	{
+		count += ft_putnbr(nbr / 10);
+	}
+	r = nbr % 10 + '0';
+	write(1, &r, 1);
+	count++;
+	return (count);
 }

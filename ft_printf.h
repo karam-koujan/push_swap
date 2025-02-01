@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/26 15:07:44 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 17:30:56 by kkoujan          ###   ########.fr       */
+/*   Created: 2024/11/13 16:52:28 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/02/01 17:32:52 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef ft_printf_H
+# define ft_printf_H
 
-void	print_list(t_list *head)
-{
-	while (head)
-	{
-		ft_printf("%i ", head->content);
-		head = head->next;
-	}
-}
+# include <unistd.h>
+# include <stdarg.h>
 
-void	free_arr(char **arr)
-{
-	int	i;
+int		ft_printf(const char *format, ...);
+int		ft_putunbr_base(unsigned int n, char *base);
+int		ft_putaddress(void *p);
+size_t	ft_strlen(const char *s);
+int		ft_putnbr(int n);
+int		ft_putstr(char *s);
+int		ft_putchar(char c);
+char	*ft_strchr(const char *s, int c);
 
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
+#endif

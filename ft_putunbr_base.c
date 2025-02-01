@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   ft_putunbr_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/26 15:07:44 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 17:30:56 by kkoujan          ###   ########.fr       */
+/*   Created: 2024/11/14 15:17:01 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/02/01 17:32:52 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-void	print_list(t_list *head)
+int	ft_putunbr_base(unsigned int n, char *base)
 {
-	while (head)
-	{
-		ft_printf("%i ", head->content);
-		head = head->next;
-	}
-}
+	char			r;
+	unsigned int	len;
+	int				count;
 
-void	free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
+	count = 0;
+	len = ft_strlen(base);
+	if (n >= len)
 	{
-		free(arr[i]);
-		i++;
+		count += ft_putunbr_base(n / len, base);
 	}
-	free(arr);
+	r = base[n % len];
+	write(1, &r, 1);
+	count++;
+	return (count);
 }
