@@ -21,7 +21,7 @@ $(BONUS_NAME): $(BONUS_OBJ)
 
 bonus: $(BONUS_NAME)
 
-%.o: %.c push_swap.h libft.h ft_printf
+%.o: %.c push_swap.h libft.h ft_printf.h get_next_line.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
