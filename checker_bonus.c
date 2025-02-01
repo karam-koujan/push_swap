@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 18:25:13 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/01 18:26:29 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	preform_sorting(char *inst, t_list **head, t_list **lb)
 		return (write(2, "Error\n", 6), free(inst), free_list(head, lb), \
 		exit(0));
 }
+
 void	read_instructions(t_list **head, t_list **lb)
 {
 	char	*inst;
@@ -77,6 +78,7 @@ void	read_instructions(t_list **head, t_list **lb)
 		inst = get_next_line(0);
 	}
 }
+
 int	main(int ac, char **av)
 {
 	t_list	*head;
