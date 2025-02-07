@@ -6,23 +6,19 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 19:40:23 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 17:14:14 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/07 12:43:33 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk)
+void	sort_chunk(t_list **stack_a, t_list **stack_b, int *arr, int chunk)
 {
 	int		idx;
 	int		b_idx;
-	int		*arr;
 	int		size;
 
 	b_idx = 0;
-	arr = list_to_arr(*stack_a);
-	if (!arr)
-		return ;
 	size = ft_lstsize(*stack_a);
 	while (*stack_a)
 	{
@@ -34,6 +30,8 @@ void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk)
 			push(stack_b, stack_a, 'b');
 			rotation(stack_b, 'b');
 		}
+		else if (is_decreasing(stack_a, arr, size))
+			rrotation(stack_a, 'a');
 		else
 			rotation(stack_a, 'a');
 		b_idx = ft_lstsize(*stack_b);

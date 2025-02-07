@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/07 10:13:00 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/07 13:00:44 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	insertion_sort(t_list **stack_a, t_list **stack_b);
 void	sort_five(t_list **stack_a, t_list **stack_b);
 void	sort_three(t_list **stack_a);
 void	sort_two(t_list **stack_a);
-void	sort_chunk(t_list **stack_a, t_list **stack_b, int chunk);
+void	sort_chunk(t_list **stack_a, t_list **stack_b, int *arr, int chunk);
 void	sort(t_list **stack_a, t_list **stack_b);
 int		*list_to_arr(t_list *stack_a);
 int		calculate_idx(int *arr, int size, int nb);
@@ -50,4 +50,6 @@ int		*list_to_arr(t_list *stack_a);
 void	move_num(t_list **stack_a, t_list **stack_b, int max, char stack);
 void	sort(t_list **stack_a, t_list **stack_b);
 int		find_limit_idx(int	*arr, int size, char type);
+int		is_decreasing(t_list **stack_a, int *arr, int size);
+
 #endif

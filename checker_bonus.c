@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/07 10:09:22 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/07 12:47:09 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	preform_sorting(char *inst, t_list **head, t_list **lb)
 	else if (ft_strncmp(inst, "rr", 2) == 0 && ft_strlen(inst) - 1 == 2)
 		checker_rr(head, lb);
 	else if (ft_strncmp(inst, "rra", 3) == 0)
-		rrotation(head,                                      's');
+		rrotation(head, 's');
 	else if (ft_strncmp(inst, "rrb", 3) == 0)
 		rrotation(lb, 's');
 	else if (ft_strncmp(inst, "rrr", 3) == 0)

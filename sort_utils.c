@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:02 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/01 17:16:14 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/07 12:21:38 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,13 @@ void	sort(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*sa;
 	t_list	*sb;
+	int		*arr;
 
 	sa = *stack_a;
 	sb = *stack_b;
+	arr = list_to_arr(*stack_a);
+	if (!arr)
+		return ;
 	if (ft_lstsize(sa) == 2)
 		sort_two(stack_a);
 	if (ft_lstsize(sa) == 3)
@@ -111,7 +115,7 @@ void	sort(t_list **stack_a, t_list **stack_b)
 	if (ft_lstsize(sa) > 3 && ft_lstsize(sa) <= 5)
 		sort_five(stack_a, stack_b);
 	if (ft_lstsize(sa) > 5 && ft_lstsize(sa) <= 100)
-		sort_chunk(stack_a, stack_b, 16);
+		sort_chunk(stack_a, stack_b, arr, 16);
 	if (ft_lstsize(sa) > 100)
-		sort_chunk(stack_a, stack_b, 32);
+		sort_chunk(stack_a, stack_b, arr, 32);
 }
