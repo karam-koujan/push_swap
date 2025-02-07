@@ -24,7 +24,6 @@ bonus: $(BONUS_NAME)
 %.o: %.c push_swap.h libft.h ft_printf.h get_next_line.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-
 clean:
 	rm -f $(OBJ)
 	rm -f $(BONUS_OBJ)
