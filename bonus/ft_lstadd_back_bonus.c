@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 16:52:28 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/08 09:52:36 by kkoujan          ###   ########.fr       */
+/*   Created: 2025/01/26 15:15:57 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/02/08 09:28:50 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft_bonus.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*l;
 
-int		ft_printf(const char *format, ...);
-int		ft_putunbr_base(unsigned int n, char *base);
-int		ft_putaddress(void *p);
-size_t	ft_strlen(const char *s);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
-int		ft_putchar(char c);
-char	*ft_strchr(const char *s, int c);
-
-#endif
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+	}
+	else
+	{
+		l = *lst;
+		while (l->next != NULL)
+		{
+			l = l->next;
+		}
+		l->next = new;
+	}
+}

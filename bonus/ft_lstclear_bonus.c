@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 16:52:28 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/08 09:52:36 by kkoujan          ###   ########.fr       */
+/*   Created: 2025/02/08 09:15:58 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/02/08 09:28:50 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft_bonus.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list	*l;
+	void	*tmp;
 
-int		ft_printf(const char *format, ...);
-int		ft_putunbr_base(unsigned int n, char *base);
-int		ft_putaddress(void *p);
-size_t	ft_strlen(const char *s);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
-int		ft_putchar(char c);
-char	*ft_strchr(const char *s, int c);
-
-#endif
+	if (!lst || !del)
+		return ;
+	if (*lst == NULL)
+		return ;
+	l = *lst;
+	while (l)
+	{
+		tmp = l->next;
+		free(l);
+		l = tmp;
+	}
+	*lst = NULL;
+}

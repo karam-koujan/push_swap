@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putunbr_base_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 16:52:28 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/08 09:52:36 by kkoujan          ###   ########.fr       */
+/*   Created: 2024/11/14 15:17:01 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/02/08 09:29:55 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf_bonus.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+int	ft_putunbr_base(unsigned int n, char *base)
+{
+	char			r;
+	unsigned int	len;
+	int				count;
 
-int		ft_printf(const char *format, ...);
-int		ft_putunbr_base(unsigned int n, char *base);
-int		ft_putaddress(void *p);
-size_t	ft_strlen(const char *s);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
-int		ft_putchar(char c);
-char	*ft_strchr(const char *s, int c);
-
-#endif
+	count = 0;
+	len = ft_strlen(base);
+	if (n >= len)
+	{
+		count += ft_putunbr_base(n / len, base);
+	}
+	r = base[n % len];
+	write(1, &r, 1);
+	count++;
+	return (count);
+}

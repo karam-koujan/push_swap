@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstrev_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 16:52:28 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/08 09:52:36 by kkoujan          ###   ########.fr       */
+/*   Created: 2025/01/26 16:58:29 by kkoujan           #+#    #+#             */
+/*   Updated: 2025/02/08 09:28:50 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft_bonus.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+t_list	*ft_lstrev(t_list *lst)
+{
+	t_list	*prev;
+	t_list	*current;
+	t_list	*next;
 
-int		ft_printf(const char *format, ...);
-int		ft_putunbr_base(unsigned int n, char *base);
-int		ft_putaddress(void *p);
-size_t	ft_strlen(const char *s);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
-int		ft_putchar(char c);
-char	*ft_strchr(const char *s, int c);
-
-#endif
+	prev = NULL;
+	current = lst;
+	next = NULL;
+	while (current != NULL)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	return (prev);
+}
