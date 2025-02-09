@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/08 10:18:22 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/09 11:53:17 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	read_instructions(t_list **head, t_list **lb)
 	inst = get_next_line(0);
 	while (inst)
 	{
+		if (ft_strlen(inst) > 3)
+			return (free(inst), write(2, "Error\n", 6), exit(1));
 		preform_sorting(inst, head, lb);
 		free(inst);
 		inst = get_next_line(0);
