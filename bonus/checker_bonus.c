@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/09 11:53:17 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/09 17:47:26 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,21 @@ void	read_instructions(t_list **head, t_list **lb)
 	while (inst)
 	{
 		if (ft_strlen(inst) > 3)
-			return (free(inst), write(2, "Error\n", 6), exit(1));
+			return (free(inst), free_list(head, lb),write(2, "Error\n", 6), \
+			exit(1));
 		preform_sorting(inst, head, lb);
 		free(inst);
 		inst = get_next_line(0);
 	}
 }
 
+void f(){system("leaks checker");};
+
 int	main(int ac, char **av)
 {
 	t_list	*head;
 	t_list	*lb;
-
+	atexit(f);
 	if (ac == 1)
 		return (1);
 	if (ac == 2)
