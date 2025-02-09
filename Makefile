@@ -8,8 +8,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 BONUS_OBJ = ./bonus/get_next_line_bonus.o ./bonus/checker_bonus.o ./bonus/ft_strncmp_bonus.o ./bonus/ft_atoi_bonus.o ./bonus/ft_split_bonus.o ./bonus/ft_substr_bonus.o ./bonus/ft_strlen_bonus.o ./bonus/ft_lstadd_front_bonus.o ./bonus/ft_lstadd_back_bonus.o ./bonus/ft_lstnew_bonus.o \
 	./bonus/ft_strchr_bonus.o ./bonus/ft_strlcpy_bonus.o ./bonus/ft_strlcat_bonus.o ./bonus/ft_strjoin_bonus.o ./bonus/ft_strdup_bonus.o ./bonus/ft_lstclear_bonus.o ./bonus/ft_strtrim_bonus.o ./bonus/parser_bonus.o \
-	./bonus/parser_helper_bonus.o ./bonus/helper_bonus.o ./bonus/ft_lstsize_bonus.o ./bonus/operations_bonus.o ./bonus/ft_lstdelone_bonus.o ./bonus/ft_lstrev_bonus.o ./bonus/operations_extra_bonus.o ./bonus/sort_bonus.o \
-	./bonus/ft_strncmp_bonus.o ./bonus/sort_utils_bonus.o ./bonus/ft_printf_bonus.o ./bonus/ft_putaddress_bonus.o ./bonus/ft_putchar_bonus.o ./bonus/ft_putnbr_bonus.o ./bonus/ft_putstr_bonus.o ./bonus/ft_putunbr_base_bonus.o ./bonus/sort_extra_bonus.o
+	./bonus/parser_helper_bonus.o ./bonus/helper_bonus.o ./bonus/ft_lstsize_bonus.o ./bonus/operations_bonus.o ./bonus/ft_lstdelone_bonus.o ./bonus/ft_lstrev_bonus.o ./bonus/operations_extra_bonus.o  \
+	./bonus/ft_strncmp_bonus.o ./bonus/ft_printf_bonus.o ./bonus/ft_putaddress_bonus.o ./bonus/ft_putchar_bonus.o ./bonus/ft_putnbr_bonus.o ./bonus/ft_putstr_bonus.o ./bonus/ft_putunbr_base_bonus.o 
 
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/07 13:00:44 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/09 09:10:00 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 
-void	print_list(t_list *head);
 void	free_arr(char **arr);
 char	*remove_leading_zeros(char *str);
 int		trim(char *str);
@@ -42,11 +41,6 @@ void	sort_chunk(t_list **stack_a, t_list **stack_b, int *arr, int chunk);
 void	sort(t_list **stack_a, t_list **stack_b);
 int		*list_to_arr(t_list *stack_a);
 int		calculate_idx(int *arr, int size, int nb);
-void	checker_rrr(t_list **stack_a, t_list **stack_b);
-void	checker_rr(t_list **stack_a, t_list **stack_b);
-void	checker_ss(t_list **stack_a, t_list **stack_b);
-int		calculate_idx(int *arr, int size, int nb);
-int		*list_to_arr(t_list *stack_a);
 void	move_num(t_list **stack_a, t_list **stack_b, int max, char stack);
 void	sort(t_list **stack_a, t_list **stack_b);
 int		find_limit_idx(int	*arr, int size, char type);
