@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 19:40:23 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/09 11:15:34 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/11 19:01:36 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void	sort_three(t_list **stack_a)
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
-	int		min;
-	int		max;
+	int		limit;
 	int		*arr;
 	int		size;
 
@@ -83,22 +82,23 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	size = ft_lstsize(*stack_a);
 	if (!arr)
 		return ;
-	min = find_limit_idx(arr, ft_lstsize(*stack_a), 'n');
+	limit = find_limit_idx(arr, ft_lstsize(*stack_a), 'n');
 	free(arr);
-	move_num(stack_b, stack_a, min, 'b');
+	move_num(stack_b, stack_a, limit, 'b');
 	if (size == 5)
 	{
 		arr = list_to_arr(*stack_a);
-		max = find_limit_idx(arr, ft_lstsize(*stack_a), 'x');
-		move_num(stack_b, stack_a, max, 'b');
+		if (!arr)
+			return ;
+		limit = find_limit_idx(arr, ft_lstsize(*stack_a), 'x');
+		move_num(stack_b, stack_a, limit, 'b');
 		free(arr);
 	}
 	sort_three(stack_a);
 	if (size < 5)
 		return (push(stack_a, stack_b, 'a'));
-	push(stack_a, stack_b, 'a');
-	rotation(stack_a, 'a');
-	push(stack_a, stack_b, 'a');
+	return (push(stack_a, stack_b, 'a'), rotation(stack_a, 'a') \
+	, push(stack_a, stack_b, 'a'));
 }
 
 void	insertion_sort(t_list **stack_a, t_list **stack_b)

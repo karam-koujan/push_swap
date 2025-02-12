@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/09 17:47:26 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/12 11:14:06 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,27 @@ void	free_list(t_list **head, t_list **lb)
 
 void	preform_sorting(char *inst, t_list **head, t_list **lb)
 {
-	if (ft_strncmp(inst, "sa", 2) == 0)
+	if (ft_strncmp(inst, "sa", ft_strlen(inst) - 1) == 0)
 		swap(head, 's');
-	else if (ft_strncmp(inst, "sb", 2) == 0)
+	else if (ft_strncmp(inst, "sb", ft_strlen(inst) - 1) == 0)
 		swap(lb, 's');
-	else if (ft_strncmp(inst, "ss", 2) == 0)
+	else if (ft_strncmp(inst, "ss", ft_strlen(inst) - 1) == 0)
 		checker_ss(head, lb);
-	else if (ft_strncmp(inst, "pa", 2) == 0)
+	else if (ft_strncmp(inst, "pa", ft_strlen(inst) - 1) == 0)
 		push(head, lb, 's');
-	else if (ft_strncmp(inst, "pb", 2) == 0)
+	else if (ft_strncmp(inst, "pb", ft_strlen(inst) - 1) == 0)
 		push(lb, head, 's');
-	else if (ft_strncmp(inst, "ra", 2) == 0)
+	else if (ft_strncmp(inst, "ra", ft_strlen(inst) - 1) == 0)
 		rotation(head, 's');
-	else if (ft_strncmp(inst, "rb", 2) == 0)
+	else if (ft_strncmp(inst, "rb", ft_strlen(inst) - 1) == 0)
 		rotation(lb, 's');
-	else if (ft_strncmp(inst, "rr", 2) == 0 && ft_strlen(inst) - 1 == 2)
+	else if (ft_strncmp(inst, "rr", ft_strlen(inst) - 1) == 0)
 		checker_rr(head, lb);
-	else if (ft_strncmp(inst, "rra", 3) == 0)
+	else if (ft_strncmp(inst, "rra", ft_strlen(inst) - 1) == 0)
 		rrotation(head, 's');
-	else if (ft_strncmp(inst, "rrb", 3) == 0)
+	else if (ft_strncmp(inst, "rrb", ft_strlen(inst) - 1) == 0)
 		rrotation(lb, 's');
-	else if (ft_strncmp(inst, "rrr", 3) == 0)
+	else if (ft_strncmp(inst, "rrr", ft_strlen(inst) - 1) == 0)
 		checker_rrr(head, lb);
 	else
 		return (write(2, "Error\n", 6), free(inst), free_list(head, lb), \
@@ -73,8 +73,8 @@ void	read_instructions(t_list **head, t_list **lb)
 	inst = get_next_line(0);
 	while (inst)
 	{
-		if (ft_strlen(inst) > 3)
-			return (free(inst), free_list(head, lb),write(2, "Error\n", 6), \
+		if (ft_strlen(inst) > 4 || ft_strlen(inst) < 2)
+			return (write(2, "Error\n", 6), free(inst), free_list(head, lb), \
 			exit(1));
 		preform_sorting(inst, head, lb);
 		free(inst);
@@ -82,13 +82,11 @@ void	read_instructions(t_list **head, t_list **lb)
 	}
 }
 
-void f(){system("leaks checker");};
-
 int	main(int ac, char **av)
 {
 	t_list	*head;
 	t_list	*lb;
-	atexit(f);
+
 	if (ac == 1)
 		return (1);
 	if (ac == 2)

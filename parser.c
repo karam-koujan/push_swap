@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:03:29 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/07 12:59:36 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:27:50 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ char	*arr_strjoin(char **str, size_t size)
 	char	*result;
 	char	*temp;
 
-	if (size == 0)
+	if (size == 0 || !trim(str[0]))
 		return (NULL);
 	i = 0;
 	temp = NULL;
-	if (!trim(str[0]))
-		return (NULL);
 	result = ft_strdup(str[0]);
 	if (!result)
 		return (NULL);
@@ -48,8 +46,12 @@ char	*arr_strjoin(char **str, size_t size)
 		if (!trim(str[i]))
 			return (free(result), NULL);
 		temp = ft_strjoin(result, " ");
+		if (!temp)
+			return (free(result), NULL);
 		free(result);
 		result = ft_strjoin(temp, str[i]);
+		if (!result)
+			return (free(temp), NULL);
 		free(temp);
 	}
 	return (result);

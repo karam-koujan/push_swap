@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 17:10:06 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/08 09:48:32 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/11 19:05:13 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stddef.h>
 
 typedef struct s_list
 {
