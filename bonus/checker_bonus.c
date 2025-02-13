@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/12 11:42:13 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/13 21:49:21 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	main(int ac, char **av)
 	t_list	*head;
 	t_list	*lb;
 
+	head = NULL;
 	if (ac == 1)
 		return (1);
 	if (ac == 2)

@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:34:20 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/01/22 20:49:22 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/13 21:46:47 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	while (l)
 	{
 		tmp = l->next;
-		free(l);
+		del(l);
 		l = tmp;
 	}
 	*lst = NULL;
