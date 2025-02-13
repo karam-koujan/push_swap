@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:15:57 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/13 20:54:37 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/13 21:23:15 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	t_list	*l;
 
 	if (!lst)
-		return (free(new));
+		return ;
 	if (!new)
 		return ;
 	if (*lst == NULL)
