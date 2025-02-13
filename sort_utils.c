@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:02 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/09 11:28:58 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/13 21:01:23 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,5 @@ void	sort(t_list **stack_a, t_list **stack_b)
 		sort_chunk(stack_a, stack_b, arr, 16);
 	if (ft_lstsize(sa) > 100)
 		sort_chunk(stack_a, stack_b, arr, 32);
+	free(arr);
 }

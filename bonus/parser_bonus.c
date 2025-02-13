@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:03:29 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/12 10:36:01 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:52:04 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,6 @@ int	parse_nums(char *str, t_list **head)
 			ft_lstadd_back(head, ft_lstnew(ft_atoi(nums[i])));
 	}
 	if (i == 0)
-		return (free(str), 0);
+		return (free_arr(nums), free(str), 0);
 	return (free_arr(nums), free(str), 1);
 }

@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:51:48 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/13 20:35:20 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/13 21:13:56 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ int	main(int ac, char **av)
 	lb = NULL;
 	sort(&head, &lb);
 	ft_lstclear(&head, free);
+	ft_lstclear(&lb, free);
 }

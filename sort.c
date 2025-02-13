@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 19:40:23 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/11 19:01:36 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/13 21:01:06 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	sort_chunk(t_list **stack_a, t_list **stack_b, int *arr, int chunk)
 			rotation(stack_a, 'a');
 		b_idx = ft_lstsize(*stack_b);
 	}
-	return (free(arr), insertion_sort(stack_a, stack_b));
+	return (insertion_sort(stack_a, stack_b));
 }
 
 void	sort_two(t_list **stack_a)

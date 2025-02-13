@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 17:10:06 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/12 12:15:46 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/13 21:04:31 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,9 @@ char	*ft_strdup(const char *s1);
 char	**ft_split(char const *s, char c);
 int		ft_atoi(const char *str);
 t_list	*ft_lstnew(int content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 #endif
