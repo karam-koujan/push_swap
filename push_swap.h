@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/09 09:10:00 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/13 22:07:32 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-# include "get_next_line.h"
 # include "ft_printf.h"
 
 void	free_arr(char **arr);
