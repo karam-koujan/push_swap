@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:44:00 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/07 12:44:25 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/16 12:15:42 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	is_decreasing(t_list **stack_a, int *arr, int size)
 			count++;
 		la = la->next;
 	}
-	if (count * 10 >= size * 6)
+	if (count * 10 >= size * 3)
 		return (1);
 	return (0);
 }
