@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:07:05 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/13 21:49:21 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/16 10:06:42 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_list(t_list **head, t_list **lb)
 	ft_lstclear(lb, free);
 }
 
-void	preform_sorting(char *inst, t_list **head, t_list **lb)
+void	perform_sorting(char *inst, t_list **head, t_list **lb)
 {
 	if (ft_strncmp(inst, "sa", ft_strlen(inst) - 1) == 0)
 		swap(head, 's');
@@ -61,25 +61,32 @@ void	preform_sorting(char *inst, t_list **head, t_list **lb)
 		rrotation(lb, 's');
 	else if (ft_strncmp(inst, "rrr", ft_strlen(inst) - 1) == 0)
 		checker_rrr(head, lb);
-	else
-		return (write(2, "Error\n", 6), free(inst), free_list(head, lb), \
-		exit(1));
 }
 
 void	read_instructions(t_list **head, t_list **lb)
 {
 	char	*inst;
+	char	*inst_arr;
+	char	*tmp;
 
 	inst = get_next_line(0);
+	inst_arr = NULL;
+	tmp = NULL;
 	while (inst)
 	{
-		if (ft_strlen(inst) > 4 || ft_strlen(inst) < 2)
-			return (write(2, "Error\n", 6), free(inst), free_list(head, lb), \
-			exit(1));
-		preform_sorting(inst, head, lb);
+		if (ft_strlen(inst) > 4 || ft_strlen(inst) <= 2 || !is_valid(inst))
+			return (write(2, "Error\n", 6), free(inst), free(inst_arr), \
+			free_list(head, lb), exit(1));
+		tmp = ft_strjoin(inst_arr, inst);
+		free(inst_arr);
+		inst_arr = ft_strjoin(tmp, " ");
+		if (!tmp || !inst_arr)
+			return (free(tmp), free(inst_arr));
 		free(inst);
+		free(tmp);
 		inst = get_next_line(0);
 	}
+	return (execute_instructions(inst_arr, head, lb), free(inst_arr));
 }
 
 int	main(int ac, char **av)

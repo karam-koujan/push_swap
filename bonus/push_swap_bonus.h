@@ -6,7 +6,7 @@
 /*   By: kkoujan <kkoujan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:11:11 by kkoujan           #+#    #+#             */
-/*   Updated: 2025/02/09 09:09:14 by kkoujan          ###   ########.fr       */
+/*   Updated: 2025/02/16 10:07:45 by kkoujan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,8 @@ int		*list_to_arr(t_list *stack_a);
 void	checker_rrr(t_list **stack_a, t_list **stack_b);
 void	checker_rr(t_list **stack_a, t_list **stack_b);
 void	checker_ss(t_list **stack_a, t_list **stack_b);
+void	execute_instructions(char *inst_arr, t_list **head, t_list **lb);
+void	perform_sorting(char *inst, t_list **head, t_list **lb);
+int		is_valid(char *inst);
 
 #endif
